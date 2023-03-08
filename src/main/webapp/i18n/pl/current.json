@@ -2,43 +2,43 @@
   "weatherApp": {
     "current": {
       "home": {
-        "title": "Current",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Dodaj Current",
-        "createOrEditLabel": "Dodaj lub edytuj: Current",
-        "notFound": "No Currents found"
+        "title": "Aktualne",
+        "refreshListLabel": "Odśwież",
+        "createLabel": "Dodaj Aktualne",
+        "createOrEditLabel": "Dodaj lub edytuj: Aktualne",
+        "notFound": "Nie znaleziono"
       },
-      "created": "Utworzono nowy obiekt typu Current z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Current z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Current z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Aktualne z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Aktualne z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Aktualne z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Current {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Aktualne {{ id }}?"
       },
       "detail": {
-        "title": "Current"
+        "title": "Aktualne"
       },
       "id": "ID",
-      "lastUpdateLong": "Last Update Long",
-      "lastUpdateTime": "Last Update Time",
+      "lastUpdateLong": "Ostatnia aktualizacja Long",
+      "lastUpdateTime": "Ostatnia aktualizacja Time",
       "tempC": "Temp C",
       "tempF": "Temp F",
-      "isDay": "Is Day",
-      "windMph": "Wind Mph",
-      "windKph": "Wind Kph",
-      "windDegree": "Wind Degree",
-      "windDirection": "Wind Direction",
-      "pressureMb": "Pressure Mb",
-      "pressureIn": "Pressure In",
-      "precipMm": "Precip Mm",
-      "precipIn": "Precip In",
-      "humidity": "Humidity",
-      "cloud": "Cloud",
-      "feelslikeC": "Feelslike C",
-      "feelslikeF": "Feelslike F",
+      "isDay": "Jest dzień ?",
+      "windMph": "Wiatr Mph",
+      "windKph": "Wiatr Kph",
+      "windDegree": "Kierunek wiatru w Stopniach",
+      "windDirection": "Kierunek wiatru",
+      "pressureMb": "Ciśnienie Mb",
+      "pressureIn": "Ciśnienie In",
+      "precipMm": "Opad Mm",
+      "precipIn": "Opad In",
+      "humidity": "Wilgotność",
+      "cloud": "Zachmurzenie",
+      "feelslikeC": "Temp. odczuwalna C",
+      "feelslikeF": "Temp. odczuwalna F",
       "uv": "Uv",
-      "gustMph": "Gust Mph",
-      "gustKph": "Gust Kph",
-      "location": "Location"
+      "gustMph": "Podmuch Mph",
+      "gustKph": "Podnuch Kph",
+      "location": "Lokalizacja"
     }
   }
 }

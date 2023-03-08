@@ -2,20 +2,20 @@
   "weatherApp": {
     "condition": {
       "home": {
-        "title": "Condition",
-        "refreshListLabel": "Refresh list",
-        "createLabel": "Dodaj Condition",
-        "createOrEditLabel": "Dodaj lub edytuj: Condition",
-        "notFound": "No Conditions found"
+        "title": "Warunki",
+        "refreshListLabel": "Odśwież",
+        "createLabel": "Dodaj Warunki",
+        "createOrEditLabel": "Dodaj lub edytuj: Warunki",
+        "notFound": "Nie znaleziono"
       },
-      "created": "Utworzono nowy obiekt typu Condition z identyfikatorem {{ param }}",
-      "updated": "Uaktualniono obiekt typu Condition z identyfikatorem {{ param }}",
-      "deleted": "Usunięto obiekt typu Condition z identyfikatorem {{ param }}",
+      "created": "Utworzono nowy obiekt typu Warunki z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Warunki z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Warunki z identyfikatorem {{ param }}",
       "delete": {
-        "question": "Czy na pewno chcesz usunąć Condition {{ id }}?"
+        "question": "Czy na pewno chcesz usunąć Warunki {{ id }}?"
       },
       "detail": {
-        "title": "Condition"
+        "title": "Warunki"
       },
       "id": "ID",
       "description": "Description",
