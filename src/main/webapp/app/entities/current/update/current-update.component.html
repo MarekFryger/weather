@@ -1,0 +1,205 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-current-heading" data-cy="CurrentCreateUpdateHeading" jhiTranslate="weatherApp.current.home.createOrEditLabel">
+        Create or edit a Current
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="row mb-3" *ngIf="editForm.controls.id.value !== null">
+          <label class="form-label" jhiTranslate="global.field.id" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.lastUpdateLong" for="field_lastUpdateLong">Last Update Long</label>
+          <input
+            type="number"
+            class="form-control"
+            name="lastUpdateLong"
+            id="field_lastUpdateLong"
+            data-cy="lastUpdateLong"
+            formControlName="lastUpdateLong"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.lastUpdateTime" for="field_lastUpdateTime">Last Update Time</label>
+          <input
+            type="text"
+            class="form-control"
+            name="lastUpdateTime"
+            id="field_lastUpdateTime"
+            data-cy="lastUpdateTime"
+            formControlName="lastUpdateTime"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.tempC" for="field_tempC">Temp C</label>
+          <input type="number" class="form-control" name="tempC" id="field_tempC" data-cy="tempC" formControlName="tempC" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.tempF" for="field_tempF">Temp F</label>
+          <input type="number" class="form-control" name="tempF" id="field_tempF" data-cy="tempF" formControlName="tempF" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.isDay" for="field_isDay">Is Day</label>
+          <input type="checkbox" class="form-check" name="isDay" id="field_isDay" data-cy="isDay" formControlName="isDay" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.windMph" for="field_windMph">Wind Mph</label>
+          <input type="number" class="form-control" name="windMph" id="field_windMph" data-cy="windMph" formControlName="windMph" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.windKph" for="field_windKph">Wind Kph</label>
+          <input type="number" class="form-control" name="windKph" id="field_windKph" data-cy="windKph" formControlName="windKph" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.windDegree" for="field_windDegree">Wind Degree</label>
+          <input
+            type="number"
+            class="form-control"
+            name="windDegree"
+            id="field_windDegree"
+            data-cy="windDegree"
+            formControlName="windDegree"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.windDirection" for="field_windDirection">Wind Direction</label>
+          <input
+            type="text"
+            class="form-control"
+            name="windDirection"
+            id="field_windDirection"
+            data-cy="windDirection"
+            formControlName="windDirection"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.pressureMb" for="field_pressureMb">Pressure Mb</label>
+          <input
+            type="number"
+            class="form-control"
+            name="pressureMb"
+            id="field_pressureMb"
+            data-cy="pressureMb"
+            formControlName="pressureMb"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.pressureIn" for="field_pressureIn">Pressure In</label>
+          <input
+            type="number"
+            class="form-control"
+            name="pressureIn"
+            id="field_pressureIn"
+            data-cy="pressureIn"
+            formControlName="pressureIn"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.precipMm" for="field_precipMm">Precip Mm</label>
+          <input type="number" class="form-control" name="precipMm" id="field_precipMm" data-cy="precipMm" formControlName="precipMm" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.precipIn" for="field_precipIn">Precip In</label>
+          <input type="number" class="form-control" name="precipIn" id="field_precipIn" data-cy="precipIn" formControlName="precipIn" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.humidity" for="field_humidity">Humidity</label>
+          <input type="number" class="form-control" name="humidity" id="field_humidity" data-cy="humidity" formControlName="humidity" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.cloud" for="field_cloud">Cloud</label>
+          <input type="number" class="form-control" name="cloud" id="field_cloud" data-cy="cloud" formControlName="cloud" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.feelslikeC" for="field_feelslikeC">Feelslike C</label>
+          <input
+            type="number"
+            class="form-control"
+            name="feelslikeC"
+            id="field_feelslikeC"
+            data-cy="feelslikeC"
+            formControlName="feelslikeC"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.feelslikeF" for="field_feelslikeF">Feelslike F</label>
+          <input
+            type="number"
+            class="form-control"
+            name="feelslikeF"
+            id="field_feelslikeF"
+            data-cy="feelslikeF"
+            formControlName="feelslikeF"
+          />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.uv" for="field_uv">Uv</label>
+          <input type="number" class="form-control" name="uv" id="field_uv" data-cy="uv" formControlName="uv" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.gustMph" for="field_gustMph">Gust Mph</label>
+          <input type="number" class="form-control" name="gustMph" id="field_gustMph" data-cy="gustMph" formControlName="gustMph" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.gustKph" for="field_gustKph">Gust Kph</label>
+          <input type="number" class="form-control" name="gustKph" id="field_gustKph" data-cy="gustKph" formControlName="gustKph" />
+        </div>
+
+        <div class="row mb-3">
+          <label class="form-label" jhiTranslate="weatherApp.current.location" for="field_location">Location</label>
+          <select
+            class="form-control"
+            id="field_location"
+            data-cy="location"
+            name="location"
+            formControlName="location"
+            [compareWith]="compareLocation"
+          >
+            <option [ngValue]="null"></option>
+            <option [ngValue]="locationOption" *ngFor="let locationOption of locationsSharedCollection">{{ locationOption.id }}</option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

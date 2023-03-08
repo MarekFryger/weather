@@ -1,0 +1,35 @@
+{
+  "applications": ["weather"],
+  "changelogDate": "20230306144527",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "condition",
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "iconLink",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "code",
+      "fieldType": "Integer"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Condition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "current",
+      "ownerSide": true,
+      "relationshipName": "current",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

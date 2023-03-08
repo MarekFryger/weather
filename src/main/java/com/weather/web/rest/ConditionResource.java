@@ -1,0 +1,172 @@
+package com.weather.web.rest;
+
+import com.weather.repository.ConditionRepository;
+import com.weather.service.ConditionService;
+import com.weather.service.dto.ConditionDTO;
+import com.weather.web.rest.errors.BadRequestAlertException;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import tech.jhipster.web.util.HeaderUtil;
+import tech.jhipster.web.util.ResponseUtil;
+
+/**
+ * REST controller for managing {@link com.weather.domain.Condition}.
+ */
+@RestController
+@RequestMapping("/api")
+public class ConditionResource {
+
+    private final Logger log = LoggerFactory.getLogger(ConditionResource.class);
+
+    private static final String ENTITY_NAME = "condition";
+
+    @Value("${jhipster.clientApp.name}")
+    private String applicationName;
+
+    private final ConditionService conditionService;
+
+    private final ConditionRepository conditionRepository;
+
+    public ConditionResource(ConditionService conditionService, ConditionRepository conditionRepository) {
+        this.conditionService = conditionService;
+        this.conditionRepository = conditionRepository;
+    }
+
+    /**
+     * {@code POST  /conditions} : Create a new condition.
+     *
+     * @param conditionDTO the conditionDTO to create.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new conditionDTO, or with status {@code 400 (Bad Request)} if the condition has already an ID.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PostMapping("/conditions")
+    public ResponseEntity<ConditionDTO> createCondition(@RequestBody ConditionDTO conditionDTO) throws URISyntaxException {
+        log.debug("REST request to save Condition : {}", conditionDTO);
+        if (conditionDTO.getId() != null) {
+            throw new BadRequestAlertException("A new condition cannot already have an ID", ENTITY_NAME, "idexists");
+        }
+        ConditionDTO result = conditionService.save(conditionDTO);
+        return ResponseEntity
+            .created(new URI("/api/conditions/" + result.getId()))
+            .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * {@code PUT  /conditions/:id} : Updates an existing condition.
+     *
+     * @param id the id of the conditionDTO to save.
+     * @param conditionDTO the conditionDTO to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated conditionDTO,
+     * or with status {@code 400 (Bad Request)} if the conditionDTO is not valid,
+     * or with status {@code 500 (Internal Server Error)} if the conditionDTO couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PutMapping("/conditions/{id}")
+    public ResponseEntity<ConditionDTO> updateCondition(
+        @PathVariable(value = "id", required = false) final Long id,
+        @RequestBody ConditionDTO conditionDTO
+    ) throws URISyntaxException {
+        log.debug("REST request to update Condition : {}, {}", id, conditionDTO);
+        if (conditionDTO.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        if (!Objects.equals(id, conditionDTO.getId())) {
+            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
+        }
+
+        if (!conditionRepository.existsById(id)) {
+            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+
+        ConditionDTO result = conditionService.update(conditionDTO);
+        return ResponseEntity
+            .ok()
+            .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, conditionDTO.getId().toString()))
+            .body(result);
+    }
+
+    /**
+     * {@code PATCH  /conditions/:id} : Partial updates given fields of an existing condition, field will ignore if it is null
+     *
+     * @param id the id of the conditionDTO to save.
+     * @param conditionDTO the conditionDTO to update.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated conditionDTO,
+     * or with status {@code 400 (Bad Request)} if the conditionDTO is not valid,
+     * or with status {@code 404 (Not Found)} if the conditionDTO is not found,
+     * or with status {@code 500 (Internal Server Error)} if the conditionDTO couldn't be updated.
+     * @throws URISyntaxException if the Location URI syntax is incorrect.
+     */
+    @PatchMapping(value = "/conditions/{id}", consumes = { "application/json", "application/merge-patch+json" })
+    public ResponseEntity<ConditionDTO> partialUpdateCondition(
+        @PathVariable(value = "id", required = false) final Long id,
+        @RequestBody ConditionDTO conditionDTO
+    ) throws URISyntaxException {
+        log.debug("REST request to partial update Condition partially : {}, {}", id, conditionDTO);
+        if (conditionDTO.getId() == null) {
+            throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
+        }
+        if (!Objects.equals(id, conditionDTO.getId())) {
+            throw new BadRequestAlertException("Invalid ID", ENTITY_NAME, "idinvalid");
+        }
+
+        if (!conditionRepository.existsById(id)) {
+            throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
+        }
+
+        Optional<ConditionDTO> result = conditionService.partialUpdate(conditionDTO);
+
+        return ResponseUtil.wrapOrNotFound(
+            result,
+            HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, conditionDTO.getId().toString())
+        );
+    }
+
+    /**
+     * {@code GET  /conditions} : get all the conditions.
+     *
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of conditions in body.
+     */
+    @GetMapping("/conditions")
+    public List<ConditionDTO> getAllConditions() {
+        log.debug("REST request to get all Conditions");
+        return conditionService.findAll();
+    }
+
+    /**
+     * {@code GET  /conditions/:id} : get the "id" condition.
+     *
+     * @param id the id of the conditionDTO to retrieve.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the conditionDTO, or with status {@code 404 (Not Found)}.
+     */
+    @GetMapping("/conditions/{id}")
+    public ResponseEntity<ConditionDTO> getCondition(@PathVariable Long id) {
+        log.debug("REST request to get Condition : {}", id);
+        Optional<ConditionDTO> conditionDTO = conditionService.findOne(id);
+        return ResponseUtil.wrapOrNotFound(conditionDTO);
+    }
+
+    /**
+     * {@code DELETE  /conditions/:id} : delete the "id" condition.
+     *
+     * @param id the id of the conditionDTO to delete.
+     * @return the {@link ResponseEntity} with status {@code 204 (NO_CONTENT)}.
+     */
+    @DeleteMapping("/conditions/{id}")
+    public ResponseEntity<Void> deleteCondition(@PathVariable Long id) {
+        log.debug("REST request to delete Condition : {}", id);
+        conditionService.delete(id);
+        return ResponseEntity
+            .noContent()
+            .headers(HeaderUtil.createEntityDeletionAlert(applicationName, true, ENTITY_NAME, id.toString()))
+            .build();
+    }
+}

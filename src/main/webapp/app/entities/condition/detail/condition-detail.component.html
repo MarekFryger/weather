@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <div *ngIf="condition">
+      <h2 data-cy="conditionDetailsHeading"><span jhiTranslate="weatherApp.condition.detail.title">Condition</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ condition.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="weatherApp.condition.description">Description</span></dt>
+        <dd>
+          <span>{{ condition.description }}</span>
+        </dd>
+        <dt><span jhiTranslate="weatherApp.condition.iconLink">Icon Link</span></dt>
+        <dd>
+          <span>{{ condition.iconLink }}</span>
+        </dd>
+        <dt><span jhiTranslate="weatherApp.condition.code">Code</span></dt>
+        <dd>
+          <span>{{ condition.code }}</span>
+        </dd>
+        <dt><span jhiTranslate="weatherApp.condition.current">Current</span></dt>
+        <dd>
+          <div *ngIf="condition.current">
+            <a [routerLink]="['/current', condition.current.id, 'view']">{{ condition.current.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/condition', condition.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

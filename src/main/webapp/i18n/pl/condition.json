@@ -1,0 +1,27 @@
+{
+  "weatherApp": {
+    "condition": {
+      "home": {
+        "title": "Condition",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Dodaj Condition",
+        "createOrEditLabel": "Dodaj lub edytuj: Condition",
+        "notFound": "No Conditions found"
+      },
+      "created": "Utworzono nowy obiekt typu Condition z identyfikatorem {{ param }}",
+      "updated": "Uaktualniono obiekt typu Condition z identyfikatorem {{ param }}",
+      "deleted": "Usunięto obiekt typu Condition z identyfikatorem {{ param }}",
+      "delete": {
+        "question": "Czy na pewno chcesz usunąć Condition {{ id }}?"
+      },
+      "detail": {
+        "title": "Condition"
+      },
+      "id": "ID",
+      "description": "Description",
+      "iconLink": "Icon Link",
+      "code": "Code",
+      "current": "Current"
+    }
+  }
+}

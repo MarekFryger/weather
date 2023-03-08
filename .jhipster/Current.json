@@ -1,0 +1,102 @@
+{
+  "applications": ["weather"],
+  "changelogDate": "20230306144627",
+  "dto": "mapstruct",
+  "embedded": false,
+  "entityTableName": "current",
+  "fields": [
+    {
+      "fieldName": "lastUpdateLong",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "lastUpdateTime",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tempC",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "tempF",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "isDay",
+      "fieldType": "Boolean"
+    },
+    {
+      "fieldName": "windMph",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "windKph",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "windDegree",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "windDirection",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pressureMb",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "pressureIn",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "precipMm",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "precipIn",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "humidity",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "cloud",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "feelslikeC",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "feelslikeF",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "uv",
+      "fieldType": "Integer"
+    },
+    {
+      "fieldName": "gustMph",
+      "fieldType": "Double"
+    },
+    {
+      "fieldName": "gustKph",
+      "fieldType": "Double"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Current",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "location",
+      "relationshipName": "location",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceClass"
+}

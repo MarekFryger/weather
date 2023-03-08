@@ -1,0 +1,232 @@
+<div>
+  <h2 id="page-heading" data-cy="CurrentHeading">
+    <span jhiTranslate="weatherApp.current.home.title">Currents</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="weatherApp.current.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-current"
+        [routerLink]="['/current/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="weatherApp.current.home.createLabel"> Create a new Current </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="currents?.length === 0">
+    <span jhiTranslate="weatherApp.current.home.notFound">No Currents found</span>
+  </div>
+
+  <div class="table-responsive table-entities" id="entities" *ngIf="currents && currents.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" (sortChange)="navigateToWithComponentValues()">
+          <th scope="col" jhiSortBy="id">
+            <div class="d-flex">
+              <span jhiTranslate="global.field.id">ID</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastUpdateLong">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.lastUpdateLong">Last Update Long</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="lastUpdateTime">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.lastUpdateTime">Last Update Time</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tempC">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.tempC">Temp C</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="tempF">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.tempF">Temp F</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="isDay">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.isDay">Is Day</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="windMph">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.windMph">Wind Mph</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="windKph">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.windKph">Wind Kph</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="windDegree">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.windDegree">Wind Degree</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="windDirection">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.windDirection">Wind Direction</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pressureMb">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.pressureMb">Pressure Mb</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="pressureIn">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.pressureIn">Pressure In</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="precipMm">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.precipMm">Precip Mm</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="precipIn">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.precipIn">Precip In</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="humidity">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.humidity">Humidity</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="cloud">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.cloud">Cloud</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feelslikeC">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.feelslikeC">Feelslike C</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="feelslikeF">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.feelslikeF">Feelslike F</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="uv">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.uv">Uv</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gustMph">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.gustMph">Gust Mph</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="gustKph">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.gustKph">Gust Kph</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col" jhiSortBy="location.id">
+            <div class="d-flex">
+              <span jhiTranslate="weatherApp.current.location">Location</span>
+              <fa-icon class="p-1" icon="sort"></fa-icon>
+            </div>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let current of currents; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/current', current.id, 'view']">{{ current.id }}</a>
+          </td>
+          <td>{{ current.lastUpdateLong }}</td>
+          <td>{{ current.lastUpdateTime }}</td>
+          <td>{{ current.tempC }}</td>
+          <td>{{ current.tempF }}</td>
+          <td>{{ current.isDay }}</td>
+          <td>{{ current.windMph }}</td>
+          <td>{{ current.windKph }}</td>
+          <td>{{ current.windDegree }}</td>
+          <td>{{ current.windDirection }}</td>
+          <td>{{ current.pressureMb }}</td>
+          <td>{{ current.pressureIn }}</td>
+          <td>{{ current.precipMm }}</td>
+          <td>{{ current.precipIn }}</td>
+          <td>{{ current.humidity }}</td>
+          <td>{{ current.cloud }}</td>
+          <td>{{ current.feelslikeC }}</td>
+          <td>{{ current.feelslikeF }}</td>
+          <td>{{ current.uv }}</td>
+          <td>{{ current.gustMph }}</td>
+          <td>{{ current.gustKph }}</td>
+          <td>
+            <div *ngIf="current.location">
+              <a [routerLink]="['/location', current.location.id, 'view']">{{ current.location.id }}</a>
+            </div>
+          </td>
+          <td class="text-end">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/current', current.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/current', current.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(current)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

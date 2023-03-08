@@ -1,0 +1,86 @@
+application {
+  config {
+    applicationType monolith
+    authenticationType session
+    baseName weather
+    blueprints []
+    buildTool maven
+    cacheProvider no
+    clientFramework angularX
+    clientPackageManager npm
+    clientTheme none
+    creationTimestamp 1678113867020
+    databaseType sql
+    devDatabaseType postgresql
+    dtoSuffix DTO
+    enableHibernateCache false
+    enableSwaggerCodegen false
+    enableTranslation true
+    jhiPrefix jhi
+    jhipsterVersion "7.9.3"
+    languages [en, pl]
+    messageBroker false
+    nativeLanguage en
+    otherModules []
+    packageName com.weather
+    prodDatabaseType postgresql
+    reactive false
+    rememberMeKey "d05af3795a08a74b303b866ac1aa64e9e2b70a1cbf982edd5e5f9c90a7a989a1e668c2497a5f3039f5a8209a2f3085eed32c"
+    searchEngine false
+    serverPort 8080
+    serviceDiscoveryType no
+    skipClient false
+    skipServer false
+    skipUserManagement false
+    testFrameworks [cypress]
+    websocket false
+    withAdminUi true
+  }
+
+  entities Condition, Current, Location
+}
+
+entity Condition {
+  description String
+  iconLink String
+  code Integer
+}
+entity Current {
+  lastUpdateLong Long
+  lastUpdateTime String
+  tempC Double
+  tempF Double
+  isDay Boolean
+  windMph Double
+  windKph Double
+  windDegree Integer
+  windDirection String
+  pressureMb Integer
+  pressureIn Integer
+  precipMm Double
+  precipIn Double
+  humidity Double
+  cloud Integer
+  feelslikeC Double
+  feelslikeF Double
+  uv Integer
+  gustMph Double
+  gustKph Double
+}
+entity Location {
+  name String required unique
+  country String
+  lat Float required
+  lon Float required
+  timeZone String
+}
+relationship OneToOne {
+  Condition{current} to Current
+}
+relationship ManyToOne {
+    Current{location} to Location
+}
+
+dto Condition, Current, Location with mapstruct
+service Condition, Current, Location with serviceClass
+
