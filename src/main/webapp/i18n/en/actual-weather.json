@@ -1,0 +1,9 @@
+{
+  "actual-weather": {
+    "today": "Today",
+    "tomorrow": "Tomorrow",
+    "after-tomorrow": "After tomorrow",
+    "before-yesterday": "Before yesterday",
+    "yesterday": "Yesterday"
+  }
+}

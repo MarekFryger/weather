@@ -1,0 +1,9 @@
+{
+  "actual-weather": {
+    "today": "Dziś",
+    "tomorrow": "Jutro",
+    "after-tomorrow": "Pojutrze",
+    "before-yesterday": "Przedwczoraj",
+    "yesterday": "Wczoraj"
+  }
+}
